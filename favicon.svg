@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 배경 원 -->
+  <circle cx="32" cy="32" r="30" fill="#4F46E5" />
+  
+  <!-- 교회 모티프 -->
+  <path d="M32 10 L46 20 L46 46 L18 46 L18 20 Z" fill="#ffffff" />
+  <rect x="30" y="36" width="4" height="10" fill="#4F46E5" />
+  <path d="M22 20 L32 12 L42 20" fill="none" stroke="#4F46E5" stroke-width="2.5" />
+  <rect x="25" y="24" width="14" height="9" rx="1" fill="#4F46E5" />
+  
+  <!-- 십자가 -->
+  <rect x="30" y="14" width="4" height="8" fill="#4F46E5" />
+  <rect x="27" y="16" width="10" height="4" fill="#4F46E5" />
+  
+  <!-- 놀이 요소 (별) -->
+  <path d="M52 28 L54 33 L59 34 L56 38 L56 43 L52 41 L47 43 L47 38 L44 34 L49 33 Z" fill="#FFD700" />
+</svg>
