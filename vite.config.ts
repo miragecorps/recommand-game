@@ -10,6 +10,7 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [react(), tailwindcss()],
+  base: "/recommand-game/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -7,16 +7,29 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 
 // 활동 유형 옵션 추가
-const activityTypes = ["말하기", "추리", "노래", "기억력", "암송", "순발력", "리액션", "몸짓", "표현"];
+const activityTypes: string[] = ["말하기", "추리", "노래", "기억력", "암송", "순발력", "리액션", "몸짓", "표현"];
 // 인원 옵션
-const peopleOptions = ["3명 이상", "4명 이상", "5명 이상"];
+const peopleOptions: string[] = ["3명 이상", "4명 이상", "5명 이상"];
 // 장소 옵션
-const placeOptions = ["실내", "실외", "실내/실외"];
+const placeOptions: string[] = ["실내", "실외", "실내/실외"];
 // 연령대 옵션
-const ageOptions = ["어린이", "유치", "초등", "청소년", "중등", "고등", "청년", "성인", "전 연령"];
+const ageOptions: string[] = ["어린이", "유치", "초등", "청소년", "중등", "고등", "청년", "성인", "전 연령"];
+
+// 게임 데이터 인터페이스 정의
+interface Game {
+  놀이명: string;
+  놀이설명: string;
+  놀이상세: string;
+  인원: string;
+  장소: string;
+  성별: string;
+  나이대: string;
+  행위: string;
+  특징: string;
+}
 
 // 데이터를 직접 JSON 객체로 포함
-const gamesData = [
+const gamesData: Game[] = [
   {
     놀이명: "성경 인물 맞히기",
     놀이설명: "질문을 통해 성경 인물을 맞히는 게임",
@@ -74,14 +87,14 @@ const gamesData = [
   },
 ];
 
-const App = () => {
-  const [games, setGames] = useState(gamesData);
-  const [filteredGames, setFilteredGames] = useState(gamesData);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedPeople, setSelectedPeople] = useState([]);
-  const [selectedPlaces, setSelectedPlaces] = useState([]);
-  const [selectedAges, setSelectedAges] = useState([]);
-  const [selectedActivities, setSelectedActivities] = useState([]);
+const App: React.FC = () => {
+  const [games, setGames] = useState<Game[]>(gamesData);
+  const [filteredGames, setFilteredGames] = useState<Game[]>(gamesData);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedPeople, setSelectedPeople] = useState<string[]>([]);
+  const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
+  const [selectedAges, setSelectedAges] = useState<string[]>([]);
+  const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
 
   useEffect(() => {
     filterGames();
@@ -130,7 +143,7 @@ const App = () => {
   };
 
   // 연령대 범위에 포함되는지 확인하는 함수
-  const ageRangeIncludes = (start, end, age) => {
+  const ageRangeIncludes = (start: string, end: string, age: string): boolean => {
     const ageOrder = ["어린이", "유치", "초등", "청소년", "중등", "고등", "청년", "성인"];
     const startIdx = ageOrder.indexOf(start);
     const endIdx = ageOrder.indexOf(end);
@@ -139,7 +152,7 @@ const App = () => {
     return startIdx <= ageIdx && ageIdx <= endIdx;
   };
 
-  const togglePeopleFilter = (people) => {
+  const togglePeopleFilter = (people: string): void => {
     if (selectedPeople.includes(people)) {
       setSelectedPeople(selectedPeople.filter((p) => p !== people));
     } else {
@@ -147,7 +160,7 @@ const App = () => {
     }
   };
 
-  const togglePlaceFilter = (place) => {
+  const togglePlaceFilter = (place: string): void => {
     if (selectedPlaces.includes(place)) {
       setSelectedPlaces(selectedPlaces.filter((p) => p !== place));
     } else {
@@ -155,7 +168,7 @@ const App = () => {
     }
   };
 
-  const toggleAgeFilter = (age) => {
+  const toggleAgeFilter = (age: string): void => {
     if (selectedAges.includes(age)) {
       setSelectedAges(selectedAges.filter((a) => a !== age));
     } else {
@@ -163,7 +176,7 @@ const App = () => {
     }
   };
 
-  const toggleActivityFilter = (activity) => {
+  const toggleActivityFilter = (activity: string): void => {
     if (selectedActivities.includes(activity)) {
       setSelectedActivities(selectedActivities.filter((a) => a !== activity));
     } else {
@@ -171,7 +184,7 @@ const App = () => {
     }
   };
 
-  const clearFilters = () => {
+  const clearFilters = (): void => {
     setSearchTerm("");
     setSelectedPeople([]);
     setSelectedPlaces([]);
@@ -267,7 +280,7 @@ const App = () => {
               <span className="text-sm text-gray-500">적용된 필터:</span>
               <Button
                 variant="outline"
-                size="xs"
+                size="sm"
                 onClick={clearFilters}
                 className="text-xs h-7 px-2 bg-red-50 text-red-600 hover:bg-red-100 border-red-200"
               >
